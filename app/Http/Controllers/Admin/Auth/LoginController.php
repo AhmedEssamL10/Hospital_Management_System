@@ -19,10 +19,7 @@ class LoginController extends Controller
                 'email' => 'required|email',
                 'password' => 'required|string|min:8',
             ]);
-            if (Auth::guard('admin')->attempt([
-                'email' => $request->email,
-                'password' => $request->password
-            ])) {
+            if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
                 return redirect(route('admin.dashboard'));
             } else {
                 return back()->with('error', 'your email or pasword is invalid');
