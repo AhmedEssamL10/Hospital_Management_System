@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -32,9 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 //admin
-Route::middleware('guest')->group(function () {
-    Route::get('admin/register', [RegisterController::class, 'create'])->name('admin.register.create');
-    Route::post('admin/register', [RegisterController::class, 'store'])->name('admin.register.store');
-    Route::get('admin/login', [LoginController::class, 'create'])->name('admin.login.create');
-    Route::post('admin/login', [LoginController::class, 'check'])->name('admin.login.check');
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    Route::get('/login', [LoginController::class, 'create'])->name('login.create');
+    Route::post('/login', [LoginController::class, 'check'])->name('login.check');
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
