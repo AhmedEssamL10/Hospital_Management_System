@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/dashboard', function () {
     return view('dashboard.index');
-});
+})->middleware('auth:admin')->name('admin.dashboard');

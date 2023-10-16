@@ -24,7 +24,9 @@ class RegisterController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:' . Admin::class],
+                'admin_key' => ['required', 'string'],
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'password_confirmation' => ['required']
             ]);
             $admin = Admin::create([
                 'name' => $request->name,

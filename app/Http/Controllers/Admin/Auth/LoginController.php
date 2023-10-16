@@ -14,15 +14,28 @@ class LoginController extends Controller
         return view('admin.auth.login');
     }
     public function check(Request $request)
-    {
+    { {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|string|min:8',
+            ]);
+            if (Auth::guard('admin')->attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ])) {
+                return redirect(route('admin.dashboard'));
+            } else {
+                return back()->with('error', 'your email or pasword is invalid');
+            }
+        }
     }
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('admin')->logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
 
         return redirect('/');
     }
