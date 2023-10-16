@@ -34,9 +34,11 @@ Route::middleware('auth')->group(function () {
 });
 //admin
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-    Route::get('/login', [LoginController::class, 'create'])->name('login.create');
-    Route::post('/login', [LoginController::class, 'check'])->name('login.check');
+    Route::middleware('guest:admin')->group(function () {
+        Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+        Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+        Route::get('/login', [LoginController::class, 'create'])->name('login.create');
+        Route::post('/login', [LoginController::class, 'check'])->name('login.check');
+    });
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
