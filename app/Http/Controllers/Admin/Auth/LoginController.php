@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Admin\Auth;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +9,7 @@ class LoginController extends Controller
 {
     public function create()
     {
-        return view('admin.auth.login');
+        return view('admin.auth.login'); 
     }
     public function check(Request $request)
     { {
