@@ -33,24 +33,26 @@
                                     <div class="card-sigin">
 
                                         <div class="main-signup-header">
-                                            <h2>Welcome back!</h2>
+                                            <h2>{{ trans('login.welcome') }}</h2>
                                             <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
                                             <form method="POST" action="{{ route('admin.login.check') }}">
                                                 @csrf
-                                                @if (session('error'))
+                                                @if ($errors->has('error'))
                                                     <div class="alert alert-danger">
-                                                        <strong>{{ session('error') }}</strong>
+                                                        {{ $errors->first('error') }}
                                                     </div>
                                                 @endif
+
                                                 <div class="form-group">
-                                                    <label>Email</label> <input class="form-control" name="email"
-                                                        :value="old('email')" required autofocus autocomplete="username">
+                                                    <label>Email</label>
+                                                    <input type="text" class="form-control" name="email"
+                                                        value="{{ old('email') }}">
+                                                    {{-- <input : required autofocus autocomplete="username"> --}}
                                                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Password</label> <input class="form-control" type="password"
                                                         name="password" required autocomplete="current-password" />
-
                                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                                     <!-- Remember Me -->
                                                     <div class="block mt-4">

@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Admin\Auth;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +11,7 @@ class LoginController extends Controller
 {
     public function create()
     {
-        return view('admin.auth.login'); 
+        return view('admin.auth.login');
     }
     public function check(Request $request)
     { {
@@ -20,7 +22,7 @@ class LoginController extends Controller
             if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
                 return redirect(route('admin.dashboard'));
             } else {
-                return back()->with('error', 'your email or pasword is invalid');
+                return back()->withErrors(['error' => 'Your email or password is invalid'])->withInput(['email' => $request->input('email')]);
             }
         }
     }
