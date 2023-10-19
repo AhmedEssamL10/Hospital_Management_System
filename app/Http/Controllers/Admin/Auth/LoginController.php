@@ -22,7 +22,7 @@ class LoginController extends Controller
             if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
                 return redirect(route('admin.dashboard'));
             } else {
-                return back()->withErrors(['error' => 'Your email or password is invalid'])->withInput(['email' => $request->input('email')]);
+                return back()->withErrors(['error' => trans('auth.failed')])->withInput(['email' => $request->input('email')]);
             }
         }
     }

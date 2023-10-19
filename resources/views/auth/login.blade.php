@@ -34,17 +34,12 @@
 
                                         <div class="main-signup-header">
                                             <h2>{{ trans('login.welcome') }}</h2>
-                                            {{-- <div class="form-group">
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected value="user">User</option>
-                                                    <option value="admin">Admin</option>
 
-                                                </select>
-                                            </div> --}}
-                                            <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
-                                            @if (session('error'))
+                                            <h5 class="font-weight-semibold mb-4">
+                                                {{ trans('login.Please sign in to continue') }}</h5>
+                                            @if ($errors->has('email'))
                                                 <div class="alert alert-danger">
-                                                    <strong>{{ session('error') }}</strong>
+                                                    {{ $errors->first('email') }}
                                                 </div>
                                             @endif
                                             <form method="POST" action="{{ route('login') }}">
@@ -52,7 +47,7 @@
                                                 <div class="form-group">
                                                     <label>Email</label> <input class="form-control" name="email"
                                                         :value="old('email')" required autofocus autocomplete="username">
-                                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                                    {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Password</label> <input class="form-control" type="password"

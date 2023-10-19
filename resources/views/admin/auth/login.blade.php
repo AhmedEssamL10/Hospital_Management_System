@@ -34,7 +34,7 @@
 
                                         <div class="main-signup-header">
                                             <h2>{{ trans('login.welcome') }}</h2>
-                                            <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
+                                            <h5 class="font-weight-semibold mb-4"> {{ trans('login.Please sign in to continue') }}</h5>
                                             <form method="POST" action="{{ route('admin.login.check') }}">
                                                 @csrf
                                                 @if ($errors->has('error'))
