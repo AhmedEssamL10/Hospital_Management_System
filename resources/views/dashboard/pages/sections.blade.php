@@ -94,13 +94,15 @@
 
                                         <td>{{ $section->created_at->DiffForHumans() }}</td>
                                         <td> <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                data-toggle="modal" href="#edit{{ $section->id }}"><i
+                                                data-bs-toggle="modal" href="#edit{{ $section->id }}"><i
                                                     class="las la-pen"></i></a>
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                data-toggle="modal" href="#delete{{ $section->id }}"><i
+                                                data-bs-toggle="modal" href="#delete{{ $section->id }}"><i
                                                     class="las la-trash"></i></a>
                                         </td>
                                     </tr>
+                                    @include('dashboard.pages.section operation.edit')
+                                    @include('dashboard.pages.section operation.delete')
                                 @endforeach
 
                             </tbody>

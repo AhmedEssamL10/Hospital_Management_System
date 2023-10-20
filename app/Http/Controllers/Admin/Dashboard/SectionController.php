@@ -16,7 +16,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $sections =   Section::select(App::getLocale() . '_name AS name', 'id', 'status', 'created_at')->get();
+        $sections =   Section::select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at')->get();
         return view('dashboard.pages.sections', compact('sections'));
     }
 
@@ -71,7 +71,6 @@ class SectionController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -83,7 +82,17 @@ class SectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'en_name' => 'required|string|max:50',
+            'ar_name' => 'required|string|max:50',
+            'status' => 'in:0,1'
+        ]);
+        Section::where('id', $id)->update([
+            'en_name' => $request->en_name,
+            'ar_name' => $request->ar_name,
+            'status' => $request->status
+        ]);
+        return redirect(route('sections.index'))->with('success', 'section is updated success');
     }
 
     /**
@@ -94,6 +103,7 @@ class SectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Section::where('id', $id)->delete();
+        return back()->with('success', 'section is deleted success');
     }
 }

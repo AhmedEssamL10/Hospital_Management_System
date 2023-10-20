@@ -14,21 +14,27 @@
                         <input type="text" class="form-control" name="en_name" placeholder="En Name"
                             aria-label="Username">
                     </div>
+                    @error('en_name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="ar_name" placeholder="Ar Name"
                             aria-label="Username">
                     </div>
-
+                    @error('ar_name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <label for="status" style="padding-left: 2%">Status</label>
                     <div class="input-group mb-3">
 
                         <select name="status" id="status" class="form-control">
                             <option @selected(old('status') == 1) value="1">Active</option>
                             <option @selected(old('status') == 0) value="0">Not Active</option>
-
                         </select>
-
                     </div>
+                    @error('status')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
