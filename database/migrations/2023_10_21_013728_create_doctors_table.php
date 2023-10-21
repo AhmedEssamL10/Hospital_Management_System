@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('ar_name');
             $table->string('email')->unique();
             $table->enum('status', ['0', '1'])->default('1');
-            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone', 11)->unique();
-            // $table->decimal('price', 8, 2);
+            $table->decimal('price', 8, 2);
+            $table->foreignId('section_id')->constrained()->change();
             $table->rememberToken();
             $table->timestamps();
         });
