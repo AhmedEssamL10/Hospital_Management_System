@@ -55,27 +55,7 @@
                                                     <label>Password</label> <input class="form-control" type="password"
                                                         name="password" required autocomplete="current-password" />
                                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                                    <!-- Remember Me -->
-                                                    <div class="block mt-4">
-                                                        <label for="remember_me" class="inline-flex items-center">
-                                                            <input id="remember_me" type="checkbox"
-                                                                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
-                                                                name="remember">
-                                                            <span
-                                                                class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                                                        </label>
-                                                    </div>
 
-                                                    <div class="flex items-center justify-end mt-4">
-                                                        @if (Route::has('password.request'))
-                                                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                                                href="{{ route('password.request') }}">
-                                                                {{ __('Forgot your password?') }}
-                                                            </a>
-                                                        @endif
-
-
-                                                    </div>
                                                 </div><button class="btn btn-main-primary btn-block">Sign In</button>
                                                 <div class="row row-xs">
                                                     <div class="col-sm-6">
@@ -89,7 +69,6 @@
                                                 </div>
                                             </form>
                                             <div class="main-signin-footer mt-5">
-                                                <p><a href="">Forgot password?</a></p>
                                                 <p>Don't have an account? <a
                                                         href="{{ route('admin.register.create') }}">Create
                                                         an Account</a></p>
