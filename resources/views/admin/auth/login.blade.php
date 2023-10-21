@@ -34,7 +34,8 @@
 
                                         <div class="main-signup-header">
                                             <h2>{{ trans('login.welcome') }}</h2>
-                                            <h5 class="font-weight-semibold mb-4"> {{ trans('login.Please sign in to continue') }}</h5>
+                                            <h5 class="font-weight-semibold mb-4">
+                                                {{ trans('login.Please sign in to continue') }}</h5>
                                             <form method="POST" action="{{ route('admin.login.check') }}">
                                                 @csrf
                                                 @if ($errors->has('error'))
@@ -90,7 +91,7 @@
                                             <div class="main-signin-footer mt-5">
                                                 <p><a href="">Forgot password?</a></p>
                                                 <p>Don't have an account? <a
-                                                        href="{{ url('/' . ($page = 'signup')) }}">Create
+                                                        href="{{ route('admin.register.create') }}">Create
                                                         an Account</a></p>
                                             </div>
                                         </div>

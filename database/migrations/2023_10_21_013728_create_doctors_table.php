@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('en_name');
+            $table->string('ar_name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->enum('status', ['0', '1'])->default('1');
+            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone', 11)->unique();
-            $table->decimal('price', 8, 2);
+            // $table->decimal('price', 8, 2);
             $table->rememberToken();
             $table->timestamps();
         });
