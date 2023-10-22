@@ -47,7 +47,7 @@ class DoctorController extends Controller
             'price' => $request->price,
             'section_id' => $request->section
         ]);
-        return back()->with('success', 'section is created success');
+        return back()->with('success', 'Doctor is created success');
     }
 
     public function show($id)
@@ -65,19 +65,28 @@ class DoctorController extends Controller
         $request->validate([
             'en_name' => 'required|string|max:50',
             'ar_name' => 'required|string|max:50',
-            'status' => 'in:0,1'
+            'status' => 'in:0,1',
+            'email' => 'required|email',
+            'price' => 'required',
+            'section' => 'required',
+            'phone' => 'required'
         ]);
         Doctor::where('id', $id)->update([
             'en_name' => $request->en_name,
             'ar_name' => $request->ar_name,
-            'status' => $request->status
+            'status' => $request->status,
+            'email' => $request->email,
+            // 'password' => Hash::make('123456789'),
+            'phone' => $request->phone,
+            'price' => $request->price,
+            'section_id' => $request->section
         ]);
-        return redirect(route('sections.index'))->with('success', 'section is updated success');
+        return back()->with('success', 'Doctor is updated success');
     }
 
     public function destroy($id)
     {
         Doctor::where('id', $id)->delete();
-        return back()->with('success', 'section is deleted success');
+        return back()->with('success', 'Doctor is deleted success');
     }
 }

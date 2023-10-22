@@ -1,4 +1,4 @@
-{{-- <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade " id="delete{{ $doctor->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -7,7 +7,7 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Section</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('sections.destroy', $section->id) }}" method="POST">
+            <form action="{{ route('doctors.destroy', $doctor->id) }}" method="POST">
                 {{ method_field('delete') }}
                 {{ csrf_field() }}
                 @csrf
@@ -21,4 +21,4 @@
             </form>
         </div>
     </div>
-</div> --}}
+</div>
