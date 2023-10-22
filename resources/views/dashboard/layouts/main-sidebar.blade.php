@@ -30,7 +30,7 @@
         <ul class="side-menu">
             <li class="side-item side-item-category">Main</li>
             <li class="slide">
-                <a class="side-menu__item" href="{{ url('/' . ($page = 'index')) }}"><svg
+                <a class="side-menu__item" href="{{ route('admin.dashboard') }}"><svg
                         xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
                         <path d="M0 0h24v24H0V0z" fill="none" />
                         <path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3" />
@@ -40,7 +40,7 @@
                         class="badge badge-success side-badge">1</span></a>
             </li>
             <li class="side-item side-item-category">General</li>
-            <li class="slide">
+            {{-- <li class="slide">
                 <a class="side-menu__item" href="{{ url('/' . ($page = 'icons')) }}"><svg
                         xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
                         <path d="M0 0h24v24H0V0z" fill="none" />
@@ -53,7 +53,7 @@
                             d="M12 16c-1.48 0-2.75-.81-3.45-2H6.88c.8 2.05 2.79 3.5 5.12 3.5s4.32-1.45 5.12-3.5h-1.67c-.69 1.19-1.97 2-3.45 2zm-.01-14C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
                     </svg><span class="side-menu__label">Icons</span><span
                         class="badge badge-danger side-badge">New</span></a>
-            </li>
+            </li> --}}
             <li class="slide">
                 <a class="side-menu__item" href="{{ route('sections.index') }}"><svg xmlns="http://www.w3.org/2000/svg"
                         class="side-menu__icon" viewBox="0 0 24 24">
@@ -62,9 +62,21 @@
                         <path
                             d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z" />
                     </svg><span class="side-menu__label">Sections</span></a>
-
             </li>
+
             <li class="slide">
+                <a class="side-menu__item" href="{{ route('doctors.index') }}"><svg xmlns="http://www.w3.org/2000/svg"
+                        class="side-menu__icon" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0V0z" fill="none" />
+                        <path
+                            d="M3.31 11l2.2 8.01L18.5 19l2.2-8H3.31zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                            opacity=".3" />
+                        <path
+                            d="M22 9h-4.79l-4.38-6.56c-.19-.28-.51-.42-.83-.42s-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1zM12 4.8L14.8 9H9.2L12 4.8zM18.5 19l-12.99.01L3.31 11H20.7l-2.2 8zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                    </svg><span class="side-menu__label">Doctors</span></a>
+            </li>
+
+            {{-- <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}"><svg
                         xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
                         <path d="M0 0h24v24H0V0z" fill="none" />
@@ -80,7 +92,7 @@
                     </li>
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'product-cart')) }}">Cart</a></li>
                 </ul>
-            </li>
+            </li> --}}
             <li class="side-item side-item-category">WEB APPS</li>
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}"><svg

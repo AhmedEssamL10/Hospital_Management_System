@@ -101,8 +101,8 @@
                                                     class="las la-trash"></i></a>
                                         </td>
                                     </tr>
-                                    @include('dashboard.pages.section operation.edit')
-                                    @include('dashboard.pages.section operation.delete')
+                                    @include('dashboard.pages.section.edit')
+                                    @include('dashboard.pages.section.delete')
                                 @endforeach
 
                             </tbody>
@@ -118,7 +118,7 @@
     </div>
     <!-- Container closed -->
     </div>
-    @include('dashboard.pages.section operation.create');
+    @include('dashboard.pages.section.create');
     <!-- main-content closed -->
 @endsection
 @section('js')
