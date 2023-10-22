@@ -52,7 +52,7 @@
     <!-- row opened -->
     @include('dashboard.layouts.message')
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
-        Add Section
+        Add Doctor
     </button>
     <div class="row row-sm">
         <!--div-->

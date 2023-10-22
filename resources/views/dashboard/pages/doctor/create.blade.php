@@ -7,7 +7,7 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Section</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('sections.store') }}" method="POST">
+            <form action="{{ route('doctors.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="input-group mb-3">
@@ -17,6 +17,7 @@
                     @error('en_name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="ar_name" placeholder="Ar Name"
                             aria-label="Username">
@@ -24,6 +25,41 @@
                     @error('ar_name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" name="email" placeholder="Email"
+                            aria-label="Username">
+                    </div>
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="price" placeholder="Price"
+                            aria-label="Username">
+                    </div>
+                    @error('price')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <label for="section" style="padding-left: 2%">Section</label>
+                    <div class="input-group mb-3">
+
+                        <select name="section" id="section" class="form-control">
+                            <option disabled>choose section
+                            </option>
+                            @foreach ($sections as $section)
+                                <option @selected(old('section') == $section->id) value="{{ $section->id }}">{{ $section->name }}
+                                </option>
+                            @endforeach
+
+
+                        </select>
+                    </div>
+                    @error('section')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                     <label for="status" style="padding-left: 2%">Status</label>
                     <div class="input-group mb-3">
 
@@ -33,6 +69,14 @@
                         </select>
                     </div>
                     @error('status')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="phone" placeholder="Phone"
+                            aria-label="Username">
+                    </div>
+                    @error('phone')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>

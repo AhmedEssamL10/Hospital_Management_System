@@ -6,13 +6,16 @@ use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
+use App\Models\Section;
+use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
     public function index()
     {
+        $sections = Section::select('id', App::getLocale() . '_name As name')->get();
         $doctors =   Doctor::with('section')->select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at', 'section_id', 'price', 'email', 'phone')->get();
-        return view('dashboard.pages.doctor.doctors', compact('doctors'));
+        return view('dashboard.pages.doctor.doctors', compact('doctors', 'sections'));
     }
 
     public function create()
@@ -26,14 +29,25 @@ class DoctorController extends Controller
         $request->validate([
             'en_name' => 'required|string|max:50',
             'ar_name' => 'required|string|max:50',
-            'status' => 'required|in:0,1'
+            'status' => 'required|in:0,1',
+            'email' => 'required|email',
+            'price' => 'required',
+            'section' => 'required',
+            'phone' => 'required'
         ]);
+
+        // dd('pass');
         Doctor::create([
             'en_name' => $request->en_name,
             'ar_name' => $request->ar_name,
-            'status' => $request->status
+            'status' => $request->status,
+            'email' => $request->email,
+            'password' => Hash::make('123456789'),
+            'phone' => $request->phone,
+            'price' => $request->price,
+            'section_id' => $request->section
         ]);
-        return redirect(route('sections.index'))->with('success', 'section is created success');
+        return back()->with('success', 'section is created success');
     }
 
     public function show($id)
