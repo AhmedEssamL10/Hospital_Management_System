@@ -87,8 +87,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $section->name }}</td>
-                                        <td>{{ $section->desc }}</td>
-                                        @if ($section->status == 1)
+                                        <td>{{ Str::limit($section->desc, 30, '...') }}</td>
+                                        @if ($section->status == 1) 
                                             <td>Active</td>
                                         @else
                                             <td>Not Active</td>

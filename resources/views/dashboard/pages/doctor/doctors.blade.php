@@ -73,6 +73,7 @@
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
+                                    <th class="border-bottom-0">image</th>
                                     <th class="border-bottom-0">name</th>
                                     <th class="border-bottom-0">status</th>
                                     <th class="border-bottom-0">Phone</th>
@@ -88,6 +89,15 @@
                                 @foreach ($doctors as $doctor)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            @if ($doctor->images)
+                                                <img src="{{ Url::asset('Dashboard/img/doctors/' . $doctor->image->filename) }}"
+                                                    height="50px" width="50px" alt="">
+                                            @else
+                                                <img src="{{ Url::asset('Dashboard/img/doctors/doctor_default.png') }}"
+                                                    height="50px" width="50px" alt="">
+                                            @endif
+                                        </td>
                                         <td>{{ $doctor->name }}</td>
                                         @if ($doctor->status == 1)
                                             <td>
