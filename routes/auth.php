@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Doctor\Auth\DoctorLoginController;
 use Illuminate\Support\Facades\Route;
 //user
 Route::middleware('guest')->group(function () {
@@ -41,4 +42,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/login', [LoginController::class, 'check'])->name('login.check');
     });
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+});
+//doctor
+Route::prefix('doctor')->name('doctor.')->group(function () {
+    Route::middleware('guest:doctor')->group(function () {
+        Route::get('/login', [DoctorLoginController::class, 'create'])->name('login.create');
+        Route::post('/login', [DoctorLoginController::class, 'check'])->name('login.check');
+    });
+    Route::post('/logout', [DoctorLoginController::class, 'destroy'])->name('logout');
 });

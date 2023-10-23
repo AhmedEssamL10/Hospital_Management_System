@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Dashboard\DoctorController;
 use App\Http\Controllers\Admin\Dashboard\SectionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -26,6 +27,10 @@ Route::group(
         Route::get('/admin/dashboard', function () {
             return view('dashboard.index');
         })->middleware('admin.auth')->name('admin.dashboard');
+        Route::get('/doctor/dashboard', function () {
+            // dd(Auth::guard('doctor')->user());
+            return view('doctor.dashboard');
+        })->middleware('doctor.auth')->name('doctor.dashboard');
         Route::middleware('admin.auth')->group(function () {
             //sections
             Route::resource('/admin/dashboard/sections', SectionController::class);

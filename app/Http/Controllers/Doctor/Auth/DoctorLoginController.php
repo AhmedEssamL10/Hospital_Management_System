@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Doctor\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
-class LoginController extends Controller
+class DoctorLoginController extends Controller
 {
     public function create()
     {
-        return view('admin.auth.login');
+        return view('doctor.auth.login');
     }
     public function check(Request $request)
     { {
@@ -19,8 +19,8 @@ class LoginController extends Controller
                 'email' => 'required|email',
                 'password' => 'required|string|min:8',
             ]);
-            if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
-                return redirect(route('admin.dashboard'));
+            if (Auth::guard('doctor')->attempt($request->only('email', 'password'))) {
+                return redirect(route('doctor.dashboard'));
             } else {
                 return back()->withErrors(['error' => trans('auth.failed')])->withInput(['email' => $request->input('email')]);
             }
@@ -28,7 +28,7 @@ class LoginController extends Controller
     }
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('doctor')->logout();
 
         // $request->session()->invalidate();
 
