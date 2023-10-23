@@ -12,7 +12,7 @@ class SectionController extends Controller
 
     public function index()
     {
-        $sections = Section::select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at')->get();
+        $sections = Section::select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', App::getLocale() . '_desc AS desc', 'en_desc', 'ar_desc', 'created_at')->get();
         return view('dashboard.pages.section.sections', compact('sections'));
     }
 
@@ -27,12 +27,16 @@ class SectionController extends Controller
         $request->validate([
             'en_name' => 'required|string|max:50',
             'ar_name' => 'required|string|max:50',
-            'status' => 'required|in:0,1'
+            'status' => 'required|in:0,1',
+            'en_desc' => 'required',
+            'ar_desc' => 'required'
         ]);
         Section::create([
             'en_name' => $request->en_name,
             'ar_name' => $request->ar_name,
-            'status' => $request->status
+            'status' => $request->status,
+            'en_desc' => $request->en_desc,
+            'ar_desc' => $request->ar_desc
         ]);
         return redirect(route('sections.index'))->with('success', 'section is created success');
     }
@@ -52,12 +56,16 @@ class SectionController extends Controller
         $request->validate([
             'en_name' => 'required|string|max:50',
             'ar_name' => 'required|string|max:50',
-            'status' => 'in:0,1'
+            'status' => 'in:0,1',
+            'en_desc' => 'required',
+            'ar_desc' => 'required'
         ]);
         Section::where('id', $id)->update([
             'en_name' => $request->en_name,
             'ar_name' => $request->ar_name,
-            'status' => $request->status
+            'status' => $request->status,
+            'en_desc' => $request->en_desc,
+            'ar_desc' => $request->ar_desc
         ]);
         return redirect(route('sections.index'))->with('success', 'section is updated success');
     }

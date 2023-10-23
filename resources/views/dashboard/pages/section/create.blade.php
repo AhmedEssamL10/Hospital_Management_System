@@ -24,6 +24,30 @@
                     @error('ar_name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
+                    <div class="row ml-1">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="en_desc">En Desc</label>
+                            </div>
+                            <textarea name="en_desc" id="en_desc" cols="25" rows="9">{{ old('en_desc') }}</textarea>
+
+                        </div>
+
+                        @error('en_desc')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="ar_desc">Ar Desc</label>
+                            </div>
+                            <textarea name="ar_desc" id="ar_desc" cols="25" rows="9">{{ old('ar_desc') }}</textarea>
+                        </div>
+                        @error('ar_desc')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <label for="status" style="padding-left: 2%">Status</label>
                     <div class="input-group mb-3">
 

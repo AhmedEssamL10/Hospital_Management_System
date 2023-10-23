@@ -74,6 +74,7 @@
                                 <tr>
                                     <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">name</th>
+                                    <th class="border-bottom-0">desc</th>
                                     <th class="border-bottom-0">status</th>
                                     <th class="border-bottom-0">created_at</th>
                                     <th class="border-bottom-0">operations</th>
@@ -86,6 +87,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $section->name }}</td>
+                                        <td>{{ $section->desc }}</td>
                                         @if ($section->status == 1)
                                             <td>Active</td>
                                         @else

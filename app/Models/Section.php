@@ -12,7 +12,9 @@ class Section extends Model
     protected $fillable = [
         'en_name',
         'ar_name',
-        'status'
+        'status',
+        'en_desc',
+        'ar_desc'
     ];
     public function doctor(): HasMany
     {

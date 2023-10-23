@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('en_name', 30);
             $table->string('ar_name', 30);
+            $table->text('en_desc');
+            $table->text('ar_desc');
             $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
         });
