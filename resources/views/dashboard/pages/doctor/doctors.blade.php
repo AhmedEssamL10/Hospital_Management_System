@@ -90,9 +90,17 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $doctor->name }}</td>
                                         @if ($doctor->status == 1)
-                                            <td>Active</td>
+                                            <td>
+
+                                                <div class="dot-label bg-success ml-5"></div>
+                                                Enable
+
+                                            </td>
                                         @else
-                                            <td>Not Active</td>
+                                            <td>
+                                                <div class="dot-label bg-danger ml-5"></div>
+                                                Blocked
+                                            </td>
                                         @endif
                                         <td>{{ $doctor->phone }} </td>
                                         <td>{{ $doctor->price }} </td>

@@ -81,6 +81,11 @@
                     @error('phone')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    {{-- <div class="mb-3">
+                        <img src="{{ asset('images/product/' . $product->image) }}" style="width: 20%" alt="">
+                        <input class="form-control" type="file" id="formFile" name="image"
+                            value="{{ old('image') ?? $product->image }}">
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

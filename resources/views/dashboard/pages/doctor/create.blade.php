@@ -7,7 +7,7 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Section</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('doctors.store') }}" method="POST">
+            <form action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="input-group mb-3">
@@ -79,6 +79,10 @@
                     @error('phone')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    {{-- <div class="mb-3">
+                        <input class="form-control" type="file" id="formFile" accept="image/*" name="image"
+                            value="{{ old('image') }}">
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
