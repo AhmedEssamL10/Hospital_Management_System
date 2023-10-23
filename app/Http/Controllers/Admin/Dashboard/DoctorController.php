@@ -13,8 +13,9 @@ class DoctorController extends Controller
 {
     public function index()
     {
+
         $sections = Section::select('id', App::getLocale() . '_name As name')->get();
-        $doctors =   Doctor::with('section')->select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at', 'section_id', 'price', 'email', 'phone')->get();
+        $doctors =   Doctor::with('section')->with('image')->select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at', 'section_id', 'price', 'email', 'phone')->get();
         return view('dashboard.pages.doctor.doctors', compact('doctors', 'sections'));
     }
 

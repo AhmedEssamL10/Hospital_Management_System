@@ -90,7 +90,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
-                                            @if ($doctor->images)
+                                            @if ($doctor->image)
                                                 <img src="{{ Url::asset('Dashboard/img/doctors/' . $doctor->image->filename) }}"
                                                     height="50px" width="50px" alt="">
                                             @else
