@@ -13,7 +13,9 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Doctor\Auth\DoctorLoginController;
 use Illuminate\Support\Facades\Route;
+//-------------------------------------------------------------------------
 //user
+//-------------------------------------------------------------------------
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
@@ -33,7 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
+//-------------------------------------------------------------------------
 //admin
+//-------------------------------------------------------------------------
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest:admin')->group(function () {
         Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
@@ -43,7 +47,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
+//-------------------------------------------------------------------------
 //doctor
+//-------------------------------------------------------------------------
 Route::prefix('doctor')->name('doctor.')->group(function () {
     Route::middleware('guest:doctor')->group(function () {
         Route::get('/login', [DoctorLoginController::class, 'create'])->name('login.create');
