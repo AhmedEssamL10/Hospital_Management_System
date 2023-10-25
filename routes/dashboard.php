@@ -36,6 +36,7 @@ Route::group(
             Route::resource('/admin/dashboard/sections', SectionController::class);
             //doctors
             Route::resource('/admin/dashboard/doctors', DoctorController::class);
+            Route::post('/admin/dashboard/doctors/delete-selected', [DoctorController::class, 'delete_selected'])->name('doctors.delete_selected');
         });
     }
 );

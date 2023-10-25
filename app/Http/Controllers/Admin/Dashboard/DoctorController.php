@@ -90,4 +90,12 @@ class DoctorController extends Controller
         Doctor::where('id', $id)->delete();
         return back()->with('success', 'Doctor is deleted success');
     }
+    public function delete_selected(Request $request)
+    {
+        $Doctors_id = explode(',', $request->delete_select_id);
+        foreach ($Doctors_id as $doctor_id) {
+            Doctor::where('id', $doctor_id)->delete();
+        }
+        return back()->with('success', 'Doctors is deleted success');
+    }
 }
