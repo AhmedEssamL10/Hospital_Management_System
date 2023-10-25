@@ -18,6 +18,10 @@ class DoctorAuth
     public function handle(Request $request, Closure $next)
     {
         if (Auth::guard('doctor')->check()) {
+            if (Auth::guard('doctor')->user()->status == 0) {
+                Auth::guard('doctor')->logout();
+                return redirect(route('doctor.login.create'))->withErrors(['error' => 'this user is blocked']);
+            }
             return $next($request);
         }
         return redirect(route('doctor.login.create'));

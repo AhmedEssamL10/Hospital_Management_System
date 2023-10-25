@@ -55,5 +55,5 @@ Route::prefix('doctor')->name('doctor.')->group(function () {
         Route::get('/login', [DoctorLoginController::class, 'create'])->name('login.create');
         Route::post('/login', [DoctorLoginController::class, 'check'])->name('login.check');
     });
-    Route::post('/logout', [DoctorLoginController::class, 'destroy'])->name('logout');
+    Route::post('/logout', [DoctorLoginController::class, 'destroy'])->middleware('doctor.auth')->name('logout');
 });
