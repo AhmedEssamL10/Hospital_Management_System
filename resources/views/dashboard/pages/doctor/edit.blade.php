@@ -85,9 +85,13 @@
                     @foreach ($days as $day)
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="flexCheckChecked" name="days[]"
-                                value="{{ $day->id }}">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                {{ $day->days }}
+                                value="{{ $day->id }}"
+                                @foreach ($doctor->schedule as $schedule) 
+                                @if ($schedule->day_id == $day->id)
+                                checked>
+                                @endif @endforeach
+                                <label class="form-check-label" for="flexCheckChecked">
+                            {{ $day->days }}
                             </label>
                         </div>
                     @endforeach
