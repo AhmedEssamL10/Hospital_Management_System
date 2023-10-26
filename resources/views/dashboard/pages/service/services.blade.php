@@ -52,7 +52,7 @@
     <!-- row opened -->
     @include('dashboard.layouts.message')
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
-        Add Section
+        Add Service
     </button>
     <div class="row row-sm">
         <!--div-->
@@ -115,8 +115,8 @@
                                                     class="las la-trash"></i></a>
                                         </td>
                                     </tr>
-                                    {{-- @include('dashboard.pages.section.edit')
-                                    @include('dashboard.pages.section.delete') --}}
+                                    @include('dashboard.pages.service.edit')
+                                    @include('dashboard.pages.service.delete')
                                 @endforeach
 
                             </tbody>
@@ -132,7 +132,7 @@
     </div>
     <!-- Container closed -->
     </div>
-    {{-- @include('dashboard.pages.section.create'); --}}
+    @include('dashboard.pages.service.create');
     <!-- main-content closed -->
 @endsection
 @section('js')

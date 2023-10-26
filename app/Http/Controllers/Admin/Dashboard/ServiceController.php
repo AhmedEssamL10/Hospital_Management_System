@@ -25,7 +25,24 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-        //
+        //validation
+        $request->validate([
+            'en_name' => 'required|string|max:50',
+            'ar_name' => 'required|string|max:50',
+            'status' => 'required|in:0,1',
+            'en_desc' => 'required',
+            'ar_desc' => 'required',
+            'price' => 'required'
+        ]);
+        Service::create([
+            'en_name' => $request->en_name,
+            'ar_name' => $request->ar_name,
+            'status' => $request->status,
+            'en_desc' => $request->en_desc,
+            'ar_desc' => $request->ar_desc,
+            'price' => $request->price
+        ]);
+        return redirect(route('services.index'))->with('success', 'Service is created success');
     }
 
     public function show($id)
@@ -42,12 +59,30 @@ class ServiceController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'en_name' => 'required|string|max:50',
+            'ar_name' => 'required|string|max:50',
+            'status' => 'in:0,1',
+            'en_desc' => 'required',
+            'ar_desc' => 'required',
+            'price' => 'required'
+        ]);
+        Service::where('id', $id)->update([
+            'en_name' => $request->en_name,
+            'ar_name' => $request->ar_name,
+            'status' => $request->status,
+            'en_desc' => $request->en_desc,
+            'ar_desc' => $request->ar_desc,
+            'price' => $request->price
+
+        ]);
+        return redirect(route('services.index'))->with('success', 'Service is updated success');
     }
 
 
     public function destroy($id)
     {
-        //
+        Service::where('id', $id)->delete();
+        return back()->with('success', 'service is deleted success');
     }
 }

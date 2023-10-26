@@ -7,7 +7,7 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Section</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('sections.store') }}" method="POST">
+            <form action="{{ route('services.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="input-group mb-3">
@@ -22,6 +22,14 @@
                             aria-label="Username">
                     </div>
                     @error('ar_name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="price" placeholder="Price"
+                            aria-label="Username">
+                    </div>
+                    @error('price')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
