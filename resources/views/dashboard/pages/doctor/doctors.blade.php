@@ -121,7 +121,7 @@
 
                                         <td>
                                             @foreach ($doctor->schedule as $schedule)
-                                                {{ $schedule->days->days }} <br>
+                                                {{ ucwords($schedule->days->days) }} <br>
                                             @endforeach
                                         </td>
                                         @if (App::getLocale() == 'en')

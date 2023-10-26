@@ -81,6 +81,16 @@
                     @error('phone')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    <label for="days" style="padding-left: 2%">Working days</label>
+                    @foreach ($days as $day)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="flexCheckChecked" name="days[]"
+                                value="{{ $day->id }}">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                {{ $day->days }}
+                            </label>
+                        </div>
+                    @endforeach
                     {{-- <div class="mb-3">
                         <img src="{{ asset('images/product/' . $product->image) }}" style="width: 20%" alt="">
                         <input class="form-control" type="file" id="formFile" name="image"

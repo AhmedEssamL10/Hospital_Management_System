@@ -18,7 +18,7 @@ class DoctorController extends Controller
 
         $sections = Section::select('id', App::getLocale() . '_name As name')->get();
         $days = WeekDays::all();
-        $doctors =   Doctor::with('section')->with('image')->with('schedule')->select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at', 'section_id', 'price', 'email', 'phone')->get();
+        $doctors =   Doctor::with(['section', 'image', 'schedule', 'schedule.days'])->select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at', 'section_id', 'price', 'email', 'phone')->get();
         return view('dashboard.pages.doctor.doctors', compact('doctors', 'sections', 'days'));
     }
 
@@ -92,6 +92,14 @@ class DoctorController extends Controller
             'price' => $request->price,
             'section_id' => $request->section
         ]);
+        $days_id = $request->input('days');
+        Schedule::where('doctor_id', $id)->delete();
+        foreach ($days_id as $day_id) {
+            Schedule::where('doctor_id', $id)->updateOrCreate([
+                'doctor_id' => $id,
+                'day_id' => $day_id
+            ]);
+        }
         return back()->with('success', 'Doctor is updated success');
     }
 
