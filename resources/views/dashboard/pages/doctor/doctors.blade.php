@@ -62,14 +62,13 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">Bordered Table</h4>
+                        <h4 class="card-title mg-b-0">Doctors Table</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
-                    <p class="tx-12 tx-gray-500 mb-2">Example of Valex Bordered Table.. <a href="">Learn more</a></p>
+                    {{-- <p class="tx-12 tx-gray-500 mb-2">Example of Valex Bordered Table.. <a href="">Learn more</a></p> --}}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-
                         <table id="example" class="table key-buttons text-md-nowrap">
                             <thead>
                                 <tr>
@@ -80,6 +79,7 @@
                                     <th class="border-bottom-0">status</th>
                                     <th class="border-bottom-0">Phone</th>
                                     <th class="border-bottom-0">Price</th>
+                                    <th class="border-bottom-0">Work days</th>
                                     <th class="border-bottom-0">Department</th>
                                     <th class="border-bottom-0">created_at</th>
                                     <th class="border-bottom-0">operations</th>
@@ -118,6 +118,12 @@
                                         @endif
                                         <td>{{ $doctor->phone }} </td>
                                         <td>{{ $doctor->price }} </td>
+
+                                        <td>
+                                            @foreach ($doctor->schedule as $schedule)
+                                                {{ $schedule->days->days }} <br>
+                                            @endforeach
+                                        </td>
                                         @if (App::getLocale() == 'en')
                                             {
                                             <td>{{ $doctor->section->en_name }} </td>

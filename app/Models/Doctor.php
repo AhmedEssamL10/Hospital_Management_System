@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -48,5 +49,9 @@ class Doctor extends Authenticatable
     public function section(): BelongsTo
     {
         return $this->belongsTo(Section::class);
+    }
+    public function schedule(): HasMany
+    {
+        return $this->hasMany(Schedule::class);
     }
 }

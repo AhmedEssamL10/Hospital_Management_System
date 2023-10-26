@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('en_name', 30);
-            $table->string('ar_name', 30);
-            $table->text('en_desc');
-            $table->text('ar_desc');
+            $table->foreignId('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            $table->foreignId('day_id')->references('id')->on('day')->onDelete('cascade');
+            $table->time('start')->default('08:00:00');
+            $table->time('end')->default('14:00:00');
             $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('schedules');
     }
 };

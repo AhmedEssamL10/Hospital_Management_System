@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('week_days', function (Blueprint $table) {
             $table->id();
-            $table->string('en_name', 30);
-            $table->string('ar_name', 30);
-            $table->text('en_desc');
-            $table->text('ar_desc');
-            $table->enum('status', ['0', '1'])->default('1');
-            $table->timestamps();
+            $table->string('days');
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('week_days');
     }
 };

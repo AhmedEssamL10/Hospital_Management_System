@@ -6,7 +6,9 @@ use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
+use App\Models\Schedule;
 use App\Models\Section;
+use App\Models\WeekDays;
 use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
@@ -15,8 +17,9 @@ class DoctorController extends Controller
     {
 
         $sections = Section::select('id', App::getLocale() . '_name As name')->get();
-        $doctors =   Doctor::with('section')->with('image')->select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at', 'section_id', 'price', 'email', 'phone')->get();
-        return view('dashboard.pages.doctor.doctors', compact('doctors', 'sections'));
+        $days = WeekDays::all();
+        $doctors =   Doctor::with('section')->with('image')->with('schedule')->select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at', 'section_id', 'price', 'email', 'phone')->get();
+        return view('dashboard.pages.doctor.doctors', compact('doctors', 'sections', 'days'));
     }
 
     public function create()
@@ -31,14 +34,14 @@ class DoctorController extends Controller
             'en_name' => 'required|string|max:50',
             'ar_name' => 'required|string|max:50',
             'status' => 'required|in:0,1',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:doctors,email',
             'price' => 'required',
             'section' => 'required',
-            'phone' => 'required'
+            'phone' => 'required|unique:doctors,phone'
         ]);
 
         // dd('pass');
-        Doctor::create([
+        $doctor =    Doctor::create([
             'en_name' => $request->en_name,
             'ar_name' => $request->ar_name,
             'status' => $request->status,
@@ -48,6 +51,13 @@ class DoctorController extends Controller
             'price' => $request->price,
             'section_id' => $request->section
         ]);
+        $days_id = $request->input('days');
+        foreach ($days_id as $id) {
+            Schedule::create([
+                'doctor_id' => $doctor->id,
+                'day_id' => $id
+            ]);
+        }
         return back()->with('success', 'Doctor is created success');
     }
 
