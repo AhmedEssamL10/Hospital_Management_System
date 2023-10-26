@@ -67,8 +67,12 @@ class DoctorController extends Controller
     }
 
 
-    public function edit($id)
+    public function filterBySection($id)
     {
+        $doctors =   Doctor::with(['section', 'image', 'schedule', 'schedule.days'])->select(App::getLocale() . '_name AS name', 'en_name', 'ar_name', 'id', 'status', 'created_at', 'section_id', 'price', 'email', 'phone')->where('section_id', $id)->get();
+        $sections = Section::select('id', App::getLocale() . '_name As name')->get();
+        $days = WeekDays::all();
+        return view('dashboard.pages.doctor.doctors', compact('doctors', 'sections', 'days'));
     }
 
     public function update(Request $request, $id)

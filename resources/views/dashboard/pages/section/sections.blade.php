@@ -86,9 +86,11 @@
                                 @foreach ($sections as $section)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $section->name }}</td>
+                                        <td><a
+                                                href="{{ route('doctors.filterBySection', $section->id) }}">{{ $section->name }}</a>
+                                        </td>
                                         <td>{{ Str::limit($section->desc, 30, '...') }}</td>
-                                        @if ($section->status == 1) 
+                                        @if ($section->status == 1)
                                             <td>Active</td>
                                         @else
                                             <td>Not Active</td>

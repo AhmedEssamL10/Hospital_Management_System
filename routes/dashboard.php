@@ -31,12 +31,15 @@ Route::group(
             // dd(Auth::guard('doctor')->user());
             return view('doctor.dashboard');
         })->middleware('doctor.auth')->name('doctor.dashboard');
-        Route::middleware('admin.auth')->group(function () {
+        Route::prefix('/admin/dashboard')->middleware('admin.auth')->group(function () {
             //sections
-            Route::resource('/admin/dashboard/sections', SectionController::class);
+            Route::resource('/sections', SectionController::class);
             //doctors
-            Route::resource('/admin/dashboard/doctors', DoctorController::class);
-            Route::post('/admin/dashboard/doctors/delete-selected', [DoctorController::class, 'delete_selected'])->name('doctors.delete_selected');
+            Route::resource('/doctors', DoctorController::class);
+            Route::name('doctors.')->group(function () {
+                Route::post('/doctors/delete-selected', [DoctorController::class, 'delete_selected'])->name('delete_selected');
+                Route::get('/doctor/{section_id}', [DoctorController::class, 'filterBySection'])->name('filterBySection');
+            });
         });
     }
 );
