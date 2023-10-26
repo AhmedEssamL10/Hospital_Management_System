@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Dashboard\DoctorController;
 use App\Http\Controllers\Admin\Dashboard\SectionController;
+use App\Http\Controllers\Admin\Dashboard\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,7 @@ Route::group(
                 Route::post('/doctors/delete-selected', [DoctorController::class, 'delete_selected'])->name('delete_selected');
                 Route::get('/doctor/{section_id}', [DoctorController::class, 'filterBySection'])->name('filterBySection');
             });
+            Route::resource('/services', ServiceController::class);
         });
     }
 );
