@@ -91,9 +91,16 @@
                                         </td>
                                         <td>{{ Str::limit($section->desc, 30, '...') }}</td>
                                         @if ($section->status == 1)
-                                            <td>Active</td>
+                                            <td>
+                                                <div class="dot-label bg-success ml-5"></div>
+                                                Enable
+
+                                            </td>
                                         @else
-                                            <td>Not Active</td>
+                                            <td>
+                                                <div class="dot-label bg-danger ml-5"></div>
+                                                Blocked
+                                            </td>
                                         @endif
 
                                         <td>{{ $section->created_at->DiffForHumans() }}</td>
