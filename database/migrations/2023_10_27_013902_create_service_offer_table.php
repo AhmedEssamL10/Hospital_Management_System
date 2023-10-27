@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('week_days', function (Blueprint $table) {
+        Schema::create('service_offer', function (Blueprint $table) {
             $table->id();
-            $table->string('days');
+            $table->foreignId('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->foreignId('offer_id')->references('id')->on('offers')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('week_days');
+        Schema::dropIfExists('service_offer');
     }
 };
