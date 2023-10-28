@@ -14,6 +14,7 @@
     <!-- Sidemenu css -->
     <link rel="stylesheet" href="{{ URL::asset('dashboard/css-rtl/sidemenu.css') }}">
     @yield('css')
+    @livewireStyles
     <!--- Style css -->
     <link href="{{ URL::asset('dashboard/css-rtl/style.css') }}" rel="stylesheet">
     <!--- Dark-mode css -->
@@ -32,6 +33,7 @@
     <!-- Sidemenu css -->
     <link rel="stylesheet" href="{{ URL::asset('dashboard/css/sidemenu.css') }}">
     @yield('css')
+    @livewireStyles
     <!-- Maps css -->
     <link href="{{ URL::asset('dashboard/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
     <!-- style css -->

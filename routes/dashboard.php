@@ -42,6 +42,7 @@ Route::group(
                 Route::get('/doctor/{section_id}', [DoctorController::class, 'filterBySection'])->name('filterBySection');
             });
             Route::resource('/services', ServiceController::class);
+            Route::view('service_offer/create', 'livewire.service-offer.include_create')->name('service_offer.create');
         });
     }
 );

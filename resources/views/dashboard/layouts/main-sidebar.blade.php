@@ -104,6 +104,7 @@
                     </svg><span class="side-menu__label">Services</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('services.index') }}">Single Services</a></li>
+                    <li><a class="slide-item" href="{{ route('service_offer.create') }}">Multi Services</a></li>
                 </ul>
             </li>
             <li class="slide">
