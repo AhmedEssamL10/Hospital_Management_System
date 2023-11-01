@@ -41,6 +41,7 @@
 @endsection
 @section('content')
     <!-- row -->
+    @livewire('create-service-offer')
     <div class="row">
 
     </div>
