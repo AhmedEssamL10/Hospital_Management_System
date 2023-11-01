@@ -43,6 +43,7 @@ Route::group(
             });
             Route::resource('/services', ServiceController::class);
             Route::view('service_offer/create', 'livewire.service-offer.include_create')->name('service_offer.create');
+            // Route::livewire('/create-service-offer', 'service-offer.create-service-offer');
         });
     }
 );
