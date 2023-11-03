@@ -60,7 +60,6 @@ class CreateServiceOffer extends Component
             $this->service = [];
             $this->discount_value = 0;
             $this->tax_value = 0;
-            // $this->total_before_descount;
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollback();
