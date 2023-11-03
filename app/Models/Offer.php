@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Offer extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     public function services(): BelongsToMany
     {
         return $this->belongsToMany(Service::class);

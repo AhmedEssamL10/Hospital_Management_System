@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Offer;
 use App\Models\Section;
 use App\Models\Service;
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 class CreateServiceOffer extends Component
 {
@@ -15,9 +18,42 @@ class CreateServiceOffer extends Component
     public $ar_desc;
     public $discount_value = 0;
     public $tax_value = 0;
-    public function create()
+    public $total = 0;
+    public $total_before_descount = 0;
+    public $service = [];
+    public function create(Request $request)
     {
         
+        try {
+            $offer = Offer::create([
+                'en_name' => $this->en_name,
+                'ar_name' => $this->ar_name,
+                'en_desc' => $this->en_desc,
+                'ar_desc' => $this->ar_desc,
+                'tax_rate' => $this->tax_value,
+                'discount_value' => $this->discount_value,
+                'total_before_discount' => $this->total_before_descount,
+                'total_after_discount' => $this->total_before_descount - $this->discount_value,
+                'total' => $this->total_before_descount - $this->discount_value + $this->tax_value,
+            ]);
+            $services_id = $this->service;
+            foreach ($services_id as $id) {
+                DB::table('service_offer')->insert([
+                    'service_id' => $id,
+                    'offer_id' => $offer->id
+                ]);
+            }
+            DB::commit();
+            // reset inputs
+            $this->en_name = '';
+            $this->ar_name = '';
+            $this->en_desc = '';
+            $this->ar_desc = '';
+            $this->service = [];
+        } catch (\Throwable $th) {
+            //throw $th;
+            DB::rollback();
+        }
     }
     public function render()
     {
