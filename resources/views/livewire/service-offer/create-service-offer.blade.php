@@ -12,7 +12,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table text-md-nowrap" id="example1">
+                            <table class="table text-md-nowrap" id="example3">
                                 <thead>
                                     <tr>
                                         <th class="wd-15p border-bottom-0">Select</th>
@@ -32,6 +32,7 @@
                                                     </label>
                                                 </div>
                                             </td>
+
                                             <td> {{ $service->name }}</td>
                                             <td> {{ $service->price }}</td>
                                         </tr>
@@ -59,6 +60,24 @@
             <div class="col-md-6 mb-3">
                 <label for="basic-url" class="form-label">Ar Describtion</label>
                 <input type="text" class="form-control" wire:model='ar_desc'>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="basic-url" class="form-label">Tax</label>
+                <input type="number" class="form-control" wire:model='tax_value'>
+            </div>
+            <div class="col-md-6 mb-3 ">
+                <label for="basic-url" class="form-label">Discount Value</label>
+                <input type="number" class="form-control" wire:model='discount_value'>
+            </div>
+            <div class="card col-md-6 mb-3 ml-3" style="width: 18rem;">
+                <div class="card-header">
+                    Total: {{ $total_before_descount }}
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                </ul>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">save</button>
