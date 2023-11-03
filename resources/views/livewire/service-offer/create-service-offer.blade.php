@@ -69,7 +69,7 @@
                 <label for="basic-url" class="form-label">Discount Value</label>
                 <input type="number" class="form-control" wire:model='discount_value'>
             </div>
-            <div class="card col-md-6 mb-3 ml-3" style="width: 18rem;">
+            {{-- <div class="card col-md-6 mb-3 ml-3" style="width: 18rem;">
                 <div class="card-header">
                     Total: {{ $total_before_descount }}
                 </div>
@@ -77,10 +77,12 @@
                     <li class="list-group-item">An item</li>
                     <li class="list-group-item">A second item</li>
                     <li class="list-group-item">A third item</li>
-                </ul>
-            </div>
+                </ul> --}}
         </div>
-        <button type="submit" class="btn btn-primary">save</button>
-    </form>
+
+</div>
+<button type="submit" class="btn btn-primary mb-3">save</button>
+
+</form>
 
 </div>

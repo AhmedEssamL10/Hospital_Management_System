@@ -37,14 +37,10 @@ class CreateServiceOffer extends Component
                 'total' => $this->total_before_descount - $this->discount_value + $this->tax_value,
             ]);
             $services_id = $this->service;
-
+            $offer->services()->sync($services_id);
             foreach ($services_id as $id) {
                 $price = Service::find($id);
                 $this->total_before_descount += $price->price;
-                DB::table('service_offer')->insert([
-                    'service_id' => $id,
-                    'offer_id' => $offer->id
-                ]);
             }
             Offer::where('id', $offer->id)->update([
                 'total_before_discount' => $this->total_before_descount,
