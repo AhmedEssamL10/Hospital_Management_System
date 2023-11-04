@@ -54,13 +54,23 @@ class CreateServiceOffer extends Component
             DB::rollback();
         }
     }
-    public function selectServices()
+    public function selectServices($serviceId, $isChecked)
     {
-        $services_id = $this->service;
-        foreach ($services_id as $id) {
-            $price = Service::find($id);
-            $this->total_before_descount += $price->price;
+
+        if ($isChecked) {
+            $service = Service::find($serviceId);
+            $this->total_before_descount += $service->price;
+            $this->service[] = $serviceId;
+        } else {
+            $service = Service::find($serviceId);
+            $this->total_before_descount -= $service->price;
+            $this->service = array_diff($this->service, [$serviceId]);
         }
+        // $services_id = $this->service;
+        // foreach ($services_id as $id) {
+        //     $price = Service::find($id);
+        //     $this->total_before_descount += $price->price;
+        // }
     }
     public function render()
     {

@@ -34,7 +34,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="flexCheckChecked"
                                                     wire:model="service" value="{{ $service->id }}"
-                                                    wire:click="selectServices">
+                                                    wire:click="selectServices({{ $service->id }}, $event.target.checked)">
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                 </label>
                                             </div>
