@@ -21,7 +21,7 @@ class CreateServiceOffer extends Component
     public $tax_value = 0;
     public $total = 0;
     public $service = [];
-    public function create(Request $request)
+    public function create()
     {
 
         try {
@@ -38,15 +38,6 @@ class CreateServiceOffer extends Component
             ]);
             $services_id = $this->service;
             $offer->services()->sync($services_id);
-            foreach ($services_id as $id) {
-                $price = Service::find($id);
-                $this->total_before_descount += $price->price;
-            }
-            Offer::where('id', $offer->id)->update([
-                'total_before_discount' => $this->total_before_descount,
-                'total_after_discount' => $this->total_before_descount - $this->discount_value,
-                'total' => $this->total_before_descount - $this->discount_value + $this->tax_value,
-            ]);
             DB::commit();
             // reset inputs
             $this->en_name = '';
@@ -56,9 +47,18 @@ class CreateServiceOffer extends Component
             $this->service = [];
             $this->discount_value = 0;
             $this->tax_value = 0;
+            $this->total_before_descount = 0;
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollback();
+        }
+    }
+    public function selectServices()
+    {
+        $services_id = $this->service;
+        foreach ($services_id as $id) {
+            $price = Service::find($id);
+            $this->total_before_descount += $price->price;
         }
     }
     public function render()

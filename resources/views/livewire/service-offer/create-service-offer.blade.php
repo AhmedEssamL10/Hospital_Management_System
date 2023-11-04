@@ -27,7 +27,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox"
                                                         id="flexCheckChecked" wire:model="service"
-                                                        value="{{ $service->id }}">
+                                                        value="{{ $service->id }}" wire:click="selectServices">
                                                     <label class="form-check-label" for="flexCheckChecked">
                                                     </label>
                                                 </div>
@@ -69,20 +69,21 @@
                 <label for="basic-url" class="form-label">Discount Value</label>
                 <input type="number" class="form-control" wire:model='discount_value'>
             </div>
-            {{-- <div class="card col-md-6 mb-3 ml-3" style="width: 18rem;">
+            <div class="card col-md-6 mb-3 ml-3" style="width: 18rem;">
                 <div class="card-header">
-                    Total: {{ $total_before_descount }}
+                    Total before discount: {{ $total_before_descount }}
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                </ul> --}}
+                    <li class="list-group-item">Total after discount: {{ $total_before_descount - $discount_value }}
+                    </li>
+                    <li class="list-group-item">Tax: {{ $tax_value }}</li>
+                    <li class="list-group-item">Total: {{ $total_before_descount - $discount_value + $tax_value }}</li>
+                </ul>
+            </div>
+
         </div>
+        <button type="submit" class="btn btn-primary mb-3">save</button>
 
-</div>
-<button type="submit" class="btn btn-primary mb-3">save</button>
-
-</form>
+    </form>
 
 </div>
