@@ -120,12 +120,10 @@
                                         <td> {{ $offer->total }}</td>
                                         <td> {{ $offer->created_at->DiffForHumans() }}</td>
 
-                                        <td> <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                data-bs-toggle="modal" href="#edit{{ $offer->id }}"><i
-                                                    class="las la-pen"></i></a>
-                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                data-bs-toggle="modal" href="#delete{{ $offer->id }}"><i
-                                                    class="las la-trash"></i></a>
+                                        <td> <button class="modal-effect btn btn-sm btn-danger"
+                                                wire:click="deleteOffer({{ $offer->id }})"
+                                                data-effect="effect-scale"><i class="las la-trash"></i></button>
+
                                         </td>
                                     </tr>
                                 @endforeach

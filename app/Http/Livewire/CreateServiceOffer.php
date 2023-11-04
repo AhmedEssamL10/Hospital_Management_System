@@ -67,4 +67,8 @@ class CreateServiceOffer extends Component
         $offers = Offer::select('id', App::getLocale() . '_name As name', 'total', App::getLocale() . '_desc As desc', 'discount_value', 'tax_rate', 'created_at')->get();
         return view('livewire.service-offer.create-service-offer', compact('services', 'offers'));
     }
+    public function deleteOffer($id)
+    {
+        Offer::where('id', $id)->delete();
+    }
 }
