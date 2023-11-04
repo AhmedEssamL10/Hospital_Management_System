@@ -64,6 +64,7 @@ class CreateServiceOffer extends Component
     public function render()
     {
         $services = Service::select('id', App::getLocale() . '_name As name', 'price')->get();
-        return view('livewire.service-offer.create-service-offer', compact('services'));
+        $offers = Offer::select('id', App::getLocale() . '_name As name', 'total', App::getLocale() . '_desc As desc', 'discount_value', 'tax_rate', 'created_at')->get();
+        return view('livewire.service-offer.create-service-offer', compact('services', 'offers'));
     }
 }

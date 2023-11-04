@@ -15,6 +15,7 @@
                             <table class="table text-md-nowrap" id="example3">
                                 <thead>
                                     <tr>
+                                        <th class="wd-15p border-bottom-0">#</th>
                                         <th class="wd-15p border-bottom-0">Select</th>
                                         <th class="wd-15p border-bottom-0">Service Name</th>
                                         <th class="wd-20p border-bottom-0">Service Price</th>
@@ -23,6 +24,7 @@
                                 <tbody>
                                     @foreach ($services as $service)
                                         <tr>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox"
@@ -34,7 +36,7 @@
                                             </td>
 
                                             <td> {{ $service->name }}</td>
-                                            <td> {{ $service->price }}</td>
+                                            <td> {{ $service->price }} $</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -80,10 +82,58 @@
                     <li class="list-group-item">Total: {{ $total_before_descount - $discount_value + $tax_value }}</li>
                 </ul>
             </div>
-
         </div>
-        <button type="submit" class="btn btn-primary mb-3">save</button>
-
+        <button type="submit" class="btn btn-primary mb-3">Create</button>
     </form>
+    <div class="row row-sm">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title mg-b-0">Offers</h4>
+                        <i class="mdi mdi-dots-horizontal text-gray"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table text-md-nowrap" id="example3">
+                            <thead>
+                                <tr>
+                                    <th class="wd-15p border-bottom-0">#</th>
+                                    <th class="wd-15p border-bottom-0">Offer Name</th>
+                                    <th class="wd-15p border-bottom-0">Describtion</th>
+                                    <th class="wd-20p border-bottom-0">Discount Value</th>
+                                    <th class="wd-20p border-bottom-0">Tax</th>
+                                    <th class="wd-20p border-bottom-0">Total</th>
+                                    <th class="wd-20p border-bottom-0">Date</th>
+                                    <th class="wd-20p border-bottom-0">Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($offers as $offer)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td> {{ $offer->name }}</td>
+                                        <td> {{ Str::limit($offer->desc, 30, '...') }}</td>
+                                        <td> {{ $offer->discount_value }}</td>
+                                        <td> {{ $offer->tax_rate }}</td>
+                                        <td> {{ $offer->total }}</td>
+                                        <td> {{ $offer->created_at->DiffForHumans() }}</td>
 
+                                        <td> <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                                data-bs-toggle="modal" href="#edit{{ $offer->id }}"><i
+                                                    class="las la-pen"></i></a>
+                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                data-bs-toggle="modal" href="#delete{{ $offer->id }}"><i
+                                                    class="las la-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
