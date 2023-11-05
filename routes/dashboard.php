@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Dashboard\DoctorController;
+use App\Http\Controllers\Admin\Dashboard\InsuranceController;
 use App\Http\Controllers\Admin\Dashboard\SectionController;
 use App\Http\Controllers\Admin\Dashboard\ServiceController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,8 @@ Route::group(
                 Route::get('/doctor/{section_id}', [DoctorController::class, 'filterBySection'])->name('filterBySection');
             });
             Route::resource('/services', ServiceController::class);
+            Route::resource('/insurance', InsuranceController::class);
+            //livewire offers
             Route::view('service_offer/create', 'livewire.service-offer.include_create')->name('service_offer.create');
             // Route::livewire('/create-service-offer', 'service-offer.create-service-offer');
         });

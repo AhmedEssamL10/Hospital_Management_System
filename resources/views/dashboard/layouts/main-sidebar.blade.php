@@ -105,6 +105,7 @@
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('services.index') }}">Single Services</a></li>
                     <li><a class="slide-item" href="{{ route('service_offer.create') }}">Multi Services</a></li>
+                    <li><a class="slide-item" href="{{ route('insurance.index') }}">Insurance Companys</a></li>
                 </ul>
             </li>
             <li class="slide">
