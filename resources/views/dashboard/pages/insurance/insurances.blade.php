@@ -14,7 +14,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">Hospital</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                    Sections</span>
+                    Companys</span>
             </div>
         </div>
         <div class="d-flex my-xl-auto right-content">
@@ -52,7 +52,7 @@
     <!-- row opened -->
     @include('dashboard.layouts.message')
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
-        Add Section
+        Add Company
     </button>
     <div class="row row-sm">
         <!--div-->

@@ -26,25 +26,42 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="discount_percentage"
+                            placeholder="Discount Percentage" aria-label="Username"
+                            value="{{ old('discount_percentage') ?? $company->discount_percentage }}">
+                    </div>
+                    @error('discount_percentage')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="company_rate" placeholder="Company Rate"
+                            aria-label="Username " value="{{ old('company_rate') ?? $company->company_rate }}">
+                    </div>
+                    @error('company_rate')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                     <div class="row ml-1">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="en_desc">En Desc</label>
+                                <label for="en_note">En Desc</label>
                             </div>
-                            <textarea name="en_desc" id="en_desc" cols="25" rows="9">{{ old('en_desc') ?? $company->en_desc }}</textarea>
+                            <textarea name="en_note" id="en_note" cols="25" rows="9">{{ old('en_note') ?? $company->en_note }}</textarea>
 
                         </div>
 
-                        @error('en_desc')
+                        @error('en_note')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="ar_desc">Ar Desc</label>
+                                <label for="ar_note">Ar Desc</label>
                             </div>
-                            <textarea name="ar_desc" id="ar_desc" cols="25" rows="9">{{ old('ar_desc') ?? $company->ar_desc }}</textarea>
+                            <textarea name="ar_note" id="ar_note" cols="25" rows="9">{{ old('ar_note') ?? $company->ar_note }}</textarea>
                         </div>
-                        @error('ar_desc')
+                        @error('ar_note')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
