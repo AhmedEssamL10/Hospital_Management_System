@@ -38,8 +38,32 @@ class InsuranceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+        $request->validate([
+            'en_name' => 'required|string|max:50',
+            'ar_name' => 'required|string|max:50',
+            'status' => 'required|in:0,1',
+            'discount_percentage' => 'required',
+            'company_rate' => 'required',
+            'en_note' => 'required',
+            'ar_note' => 'required',
+        ]);
+
+        // dd('pass');
+        $company = Insurance::create([
+            'en_name' => $request->en_name,
+            'ar_name' => $request->ar_name,
+            'status' => $request->status,
+            'insurance_code' => uniqid('company_'),
+            'discount_percentage' => $request->discount_percentage . '%',
+            'company_rate' => $request->company_rate . '%',
+            'en_note' => $request->en_note,
+            'ar_note' => $request->ar_note
+        ]);
+        return back()->with('success', 'Company is created success');
     }
+
+
 
     /**
      * Display the specified resource.

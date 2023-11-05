@@ -7,7 +7,7 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Section</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('sections.store') }}" method="POST">
+            <form action="{{ route('insurance.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="input-group mb-3">
@@ -25,25 +25,41 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="discount_percentage"
+                            placeholder="Discount Percentage" aria-label="Username">
+                    </div>
+                    @error('discount_percentage')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="company_rate" placeholder="Company Rate"
+                            aria-label="Username">
+                    </div>
+                    @error('company_rate')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                     <div class="row ml-1">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="en_desc">En Desc</label>
+                                <label for="en_note">En Note</label>
                             </div>
-                            <textarea name="en_desc" id="en_desc" cols="25" rows="9">{{ old('en_desc') }}</textarea>
+                            <textarea name="en_note" id="en_note" cols="25" rows="9">{{ old('en_note') }}</textarea>
 
                         </div>
 
-                        @error('en_desc')
+                        @error('en_note')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="ar_desc">Ar Desc</label>
+                                <label for="ar_note">Ar Note</label>
                             </div>
-                            <textarea name="ar_desc" id="ar_desc" cols="25" rows="9">{{ old('ar_desc') }}</textarea>
+                            <textarea name="ar_note" id="ar_note" cols="25" rows="9">{{ old('ar_note') }}</textarea>
                         </div>
-                        @error('ar_desc')
+                        @error('ar_note')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

@@ -124,6 +124,8 @@
                                                     class="las la-trash"></i></a>
                                         </td>
                                     </tr>
+                                    @include('dashboard.pages.insurance.edit')
+                                    @include('dashboard.pages.insurance.delete')
                                 @endforeach
 
                             </tbody>
@@ -139,7 +141,7 @@
     </div>
     <!-- Container closed -->
     </div>
-    @include('dashboard.pages.section.create');
+    @include('dashboard.pages.insurance.create');
     <!-- main-content closed -->
 @endsection
 @section('js')
