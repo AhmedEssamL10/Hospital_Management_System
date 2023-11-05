@@ -22,6 +22,7 @@ class CreateServiceOffer extends Component
     public $total = 0;
     public $service = [];
     public $offerId;
+    public $flag = false;
     public function create()
     {
 
@@ -48,6 +49,7 @@ class CreateServiceOffer extends Component
             $this->service = [];
             $this->discount_value = 0;
             $this->tax_value = 0;
+            $this->flag = false;
             $this->total_before_descount = 0;
         } catch (\Throwable $th) {
             //throw $th;
@@ -66,11 +68,6 @@ class CreateServiceOffer extends Component
             $this->total_before_descount -= $service->price;
             $this->service = array_diff($this->service, [$serviceId]);
         }
-        // $services_id = $this->service;
-        // foreach ($services_id as $id) {
-        //     $price = Service::find($id);
-        //     $this->total_before_descount += $price->price;
-        // }
     }
     public function render()
     {
@@ -95,6 +92,7 @@ class CreateServiceOffer extends Component
             $this->offerId = $offer->id;
             $this->service = [];
             $this->total_before_descount = 0;
+            $this->flag = true;
             foreach ($offer->services->pluck('id') as $serviceid) {
                 $this->service[] = $serviceid;
                 $price = Service::find($serviceid);
@@ -136,9 +134,26 @@ class CreateServiceOffer extends Component
             $this->discount_value = 0;
             $this->tax_value = 0;
             $this->total_before_descount = 0;
+            $this->flag = false;
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollback();
         }
+    }
+    public function createOrUpdate()
+    {
+        if ($this->flag == true) {
+            $this->offerId = null;
+            $this->en_name = '';
+            $this->ar_name = '';
+            $this->en_desc = '';
+            $this->ar_desc = '';
+            $this->service = [];
+            $this->discount_value = 0;
+            $this->tax_value = 0;
+            $this->total_before_descount = 0;
+            $this->flag = false;
+        } else
+            $this->flag = true;
     }
 }
