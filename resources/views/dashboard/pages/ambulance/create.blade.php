@@ -4,10 +4,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Section</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Ambulance</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('ambulance.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="input-group mb-3">
@@ -27,22 +27,59 @@
                     @enderror
 
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="email" placeholder="Email"
+                        <input type="text" class="form-control" name="car_model" placeholder="Car Model"
                             aria-label="Username">
                     </div>
-                    @error('email')
+                    @error('car_model')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="price" placeholder="Price"
-                            aria-label="Username">
+                        <input type="text" class="form-control" name="manufacturing_year"
+                            placeholder="Manufacturing Year" aria-label="Username">
                     </div>
-                    @error('price')
+                    @error('manufacturing_year')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="car_number" placeholder="Car Number"
+                            aria-label="Username">
+                    </div>
+                    @error('car_number')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
 
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="license_number" placeholder="License Number"
+                            aria-label="Username">
+                    </div>
+                    @error('license_number')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="row ml-1">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="en_note">En Note</label>
+                            </div>
+                            <textarea name="en_note" id="en_note" cols="25" rows="9">{{ old('en_note') }}</textarea>
+
+                        </div>
+
+                        @error('en_note')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="ar_note">Ar Note</label>
+                            </div>
+                            <textarea name="ar_note" id="ar_note" cols="25" rows="9">{{ old('ar_note') }}</textarea>
+                        </div>
+                        @error('ar_note')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <label for="status" style="padding-left: 2%">Status</label>
                     <div class="input-group mb-3">
