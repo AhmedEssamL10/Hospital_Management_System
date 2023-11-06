@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum('blood_group', ['+O' . '-O', '+A', '-A', '+B', '-B', '+AB', '-AB']);
             $table->enum('gender', ['m', 'f']);
             $table->date('birth_date');
+            $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
         });
     }

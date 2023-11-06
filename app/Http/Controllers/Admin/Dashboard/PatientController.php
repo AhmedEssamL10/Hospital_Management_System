@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class PatientController extends Controller
 {
@@ -14,7 +16,23 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        $patients = Patient::select(
+            'en_name',
+            'ar_name',
+            'en_address',
+            'ar_address',
+            App::getLocale() . '_name as name',
+            App::getLocale() . '_address as address',
+            'email',
+            'phone',
+            'national_id',
+            'status',
+            'gender',
+            'blood_group',
+            'birth_date',
+            'created_at'
+        )->get();
+        return view('dashboard.pages.patient.patients', compact('patients'));
     }
 
     /**
