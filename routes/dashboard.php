@@ -1,14 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\Dashboard\AmbulanceController;
 use App\Http\Controllers\Admin\Dashboard\DoctorController;
 use App\Http\Controllers\Admin\Dashboard\InsuranceController;
 use App\Http\Controllers\Admin\Dashboard\PatientController;
 use App\Http\Controllers\Admin\Dashboard\SectionController;
 use App\Http\Controllers\Admin\Dashboard\ServiceController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Models\Ambulance;
-use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
