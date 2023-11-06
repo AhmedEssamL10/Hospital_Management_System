@@ -1,19 +1,19 @@
 <!-- Modal -->
-<div class="modal fade " id="edit{{ $doctor->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade " id="edit{{ $ambulance->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Doctor</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit ambulance</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('doctors.update', $doctor->id) }}" method="POST">
+            <form action="{{ route('ambulance.update', $ambulance->id) }}" method="POST">
                 {{ method_field('patch') }}
                 @csrf
                 <div class="modal-body">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="en_name" placeholder="En Name"
-                            aria-label="Username" value="{{ old('en_name') ?? $doctor->en_name }}">
+                            aria-label="Username" value="{{ old('en_name') ?? $ambulance->en_name_driver }}">
                     </div>
 
                     @error('en_name')
@@ -22,51 +22,76 @@
 
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="ar_name" placeholder="Ar Name"
-                            value="{{ old('en_name') ?? $doctor->ar_name }}">
+                            value="{{ old('en_name') ?? $ambulance->ar_name_driver }}">
                     </div>
 
                     @error('ar_name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="email" placeholder="Email"
-                            aria-label="Username" value="{{ old('email') ?? $doctor->email }}">
+                        <input type="text" class="form-control" name="car_model" placeholder="Car Model"
+                            aria-label="Username" value="{{ old('car_model') ?? $ambulance->car_model }}">
                     </div>
-                    @error('email')
+                    @error('car_model')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="price" placeholder="Price"
-                            aria-label="Username" value="{{ old('price') ?? $doctor->price }}">
+                        <input type="text" class="form-control" name="manufacturing_year"
+                            placeholder="Manufacturing Year" aria-label="Username"
+                            value="{{ old('manufacturing_year') ?? $ambulance->manufacturing_year }}">
                     </div>
-                    @error('price')
+                    @error('manufacturing_year')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
-                    <label for="section" style="padding-left: 2%">Section</label>
                     <div class="input-group mb-3">
-
-                        <select name="section" id="section" class="form-control">
-                            <option disabled>choose section
-                            </option>
-                            @foreach ($sections as $section)
-                                <option @selected($doctor->section_id == $section->id) value="{{ $section->id }}">{{ $section->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control" name="car_number" placeholder="Car Number"
+                            aria-label="Username" value="{{ old('car_number') ?? $ambulance->car_number }}">
                     </div>
-                    @error('section')
+                    @error('car_number')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="license_number" placeholder="License Number"
+                            aria-label="Username" value="{{ old('license_number') ?? $ambulance->license_number }}">
+                    </div>
+                    @error('license_number')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="row ml-1">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="en_note">En Note</label>
+                            </div>
+                            <textarea name="en_note" id="en_note" cols="25" rows="9">{{ old('en_note') ?? $ambulance->en_note }}"</textarea>
+
+                        </div>
+
+                        @error('en_note')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="ar_note">Ar Note</label>
+                            </div>
+                            <textarea name="ar_note" id="ar_note" cols="25" rows="9">{{ old('ar_note') ?? $ambulance->ar_note }}"</textarea>
+                        </div>
+                        @error('ar_note')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <label for="status" style="padding-left: 2%">Status</label>
                     <div class="input-group mb-3">
 
                         <select name="status" id="status" class="form-control">
-                            <option @selected($doctor->status == 1) value="1">Active</option>
-                            <option @selected($doctor->status == 0) value="0">Not Active</option>
+                            <option @selected($ambulance->status == 1) value="1">Active</option>
+                            <option @selected($ambulance->status == 0) value="0">Not Active</option>
                         </select>
 
                     </div>
@@ -76,30 +101,11 @@
 
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="phone" placeholder="Phone"
-                            aria-label="Username" value="{{ old('phone') ?? $doctor->phone }}">
+                            aria-label="Username" value="{{ old('phone') ?? $ambulance->phone }}">
                     </div>
                     @error('phone')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    <label for="days" style="padding-left: 2%">Working days</label>
-                    @foreach ($days as $day)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="flexCheckChecked" name="days[]"
-                                value="{{ $day->id }}"
-                                @foreach ($doctor->schedule as $schedule) 
-                                @if ($schedule->day_id == $day->id)
-                                checked>
-                                @endif @endforeach
-                                <label class="form-check-label" for="flexCheckChecked">
-                            {{ $day->days }}
-                            </label>
-                        </div>
-                    @endforeach
-                    {{-- <div class="mb-3">
-                        <img src="{{ asset('images/product/' . $product->image) }}" style="width: 20%" alt="">
-                        <input class="form-control" type="file" id="formFile" name="image"
-                            value="{{ old('image') ?? $product->image }}">
-                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

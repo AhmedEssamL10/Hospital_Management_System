@@ -121,8 +121,8 @@
                                                     class="las la-trash"></i></a>
                                         </td>
                                     </tr>
-                                    {{-- @include('dashboard.pages.ambulance.edit')
-                                    @include('dashboard.pages.ambulance.delete') --}}
+                                    @include('dashboard.pages.ambulance.edit')
+                                    @include('dashboard.pages.ambulance.delete')
                                 @endforeach
 
                             </tbody>
