@@ -163,7 +163,7 @@
     </div>
     <!-- Container closed -->
     </div>
-    {{-- @include('dashboard.pages.insurance.create'); --}}
+    @include('dashboard.pages.patient.create');
     <!-- main-content closed -->
 @endsection
 @section('js')
