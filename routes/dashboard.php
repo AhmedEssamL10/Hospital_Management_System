@@ -51,6 +51,8 @@ Route::group(
             Route::resource('/ambulance', AmbulanceController::class);
             //livewire offers
             Route::view('service_offer/create', 'livewire.service-offer.include_create')->name('service_offer.create');
+            //livewire single invoice
+            Route::view('single-invoice', 'livewire.single-invoice.include_create')->name('single_invoice');
         });
     }
 );
