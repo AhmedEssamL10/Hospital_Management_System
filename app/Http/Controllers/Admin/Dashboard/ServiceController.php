@@ -16,13 +16,6 @@ class ServiceController extends Controller
         return view('dashboard.pages.service.services', compact('services'));
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
         //validation
@@ -45,18 +38,6 @@ class ServiceController extends Controller
         return redirect(route('services.index'))->with('success', 'Service is created success');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -78,7 +59,6 @@ class ServiceController extends Controller
         ]);
         return redirect(route('services.index'))->with('success', 'Service is updated success');
     }
-
 
     public function destroy($id)
     {

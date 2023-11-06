@@ -1,18 +1,18 @@
 <!-- Modal -->
-<div class="modal fade " id="delete{{ $doctor->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade " id="delete{{ $patient->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Section</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Patient</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('doctors.destroy', $doctor->id) }}" method="POST">
+            <form action="{{ route('patient.destroy', $patient->id) }}" method="POST">
                 {{ method_field('delete') }}
                 {{ csrf_field() }}
                 @csrf
                 <div class="modal-body">
-                    <p>Do you want do delete this section?</p>
+                    <p>Do you want do delete this Patient?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

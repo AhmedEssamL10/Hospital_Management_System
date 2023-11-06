@@ -22,11 +22,6 @@ class DoctorController extends Controller
         return view('dashboard.pages.doctor.doctors', compact('doctors', 'sections', 'days'));
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
         //validation
@@ -40,7 +35,6 @@ class DoctorController extends Controller
             'phone' => 'required|unique:doctors,phone'
         ]);
 
-        // dd('pass');
         $doctor =    Doctor::create([
             'en_name' => $request->en_name,
             'ar_name' => $request->ar_name,
@@ -60,12 +54,6 @@ class DoctorController extends Controller
         }
         return back()->with('success', 'Doctor is created success');
     }
-
-    public function show($id)
-    {
-        //
-    }
-
 
     public function filterBySection($id)
     {

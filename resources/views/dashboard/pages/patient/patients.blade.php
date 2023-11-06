@@ -146,8 +146,8 @@
                                                     class="las la-trash"></i></a>
                                         </td>
                                     </tr>
-                                    {{-- @include('dashboard.pages.insurance.edit')
-                                    @include('dashboard.pages.insurance.delete') --}}
+                                    @include('dashboard.pages.patient.edit')
+                                    @include('dashboard.pages.patient.delete')
                                 @endforeach
 
                             </tbody>

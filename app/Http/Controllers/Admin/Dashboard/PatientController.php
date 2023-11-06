@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class PatientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $patients = Patient::select(
@@ -31,27 +27,12 @@ class PatientController extends Controller
             'gender',
             'blood_group',
             'birth_date',
-            'created_at'
+            'created_at',
+            'id'
         )->get();
         return view('dashboard.pages.patient.patients', compact('patients'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -85,47 +66,42 @@ class PatientController extends Controller
         return back()->with('success', 'Patient is updated success');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'en_name' => 'required|string|max:50',
+            'ar_name' => 'required|string|max:50',
+            'en_address' => 'required|string|max:70',
+            'ar_address' => 'required|string|max:70',
+            'status' => 'required|in:0,1',
+            'gender' => 'required|in:m,f',
+            'blood_group' => 'required|in:+A,-A,+B,-B,+AB,-AB,+O,-O',
+            'email' => 'required|email',
+            'national_id' => 'required|max:14|min:14',
+            'birth_date' => 'required',
+            'phone' => 'required'
+        ]);
+        Patient::where('id', $id)->update([
+            'en_name' => $request->en_name,
+            'ar_name' => $request->ar_name,
+            'en_address' => $request->en_address,
+            'ar_address' => $request->ar_address,
+            'status' => $request->status,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'birth_date' => $request->birth_date,
+            'national_id' => $request->national_id,
+            'blood_group' => $request->blood_group,
+            'gender' => $request->gender,
+        ]);
+
+        return back()->with('success', 'Section is updated success');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Patient::where('id', $id)->delete();
+
+        return back()->with('success', 'Patient is deleted success');
     }
 }

@@ -16,11 +16,6 @@ class SectionController extends Controller
         return view('dashboard.pages.section.sections', compact('sections'));
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
         //validation
@@ -39,16 +34,6 @@ class SectionController extends Controller
             'ar_desc' => $request->ar_desc
         ]);
         return redirect(route('sections.index'))->with('success', 'section is created success');
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
     }
 
     public function update(Request $request, $id)
